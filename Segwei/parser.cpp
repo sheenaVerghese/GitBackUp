@@ -3081,6 +3081,7 @@ int parser::forLoop(int i)
         {
             if(count==0||count==2)
             {
+                loop=false;
                 int check= parseStatement();
                 //if an error is given out
                 if(check!=0)
@@ -3090,6 +3091,7 @@ int parser::forLoop(int i)
             }
             else
             {
+                loop=true;
                 int check=checkLoop(-1);
                 //if an error is given out
                 if(check!=1)
