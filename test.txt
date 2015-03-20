@@ -1,0 +1,2501 @@
+begin
+decimal a="s;--> error cos no closing
+end
+
+
+begin
+decimal a=1.2;
+end
+
+begin
+decimal a=1.2;
+a=3;
+if()//-->error
+a=4;
+end_if
+end
+
+begin
+decimal a=1.2;
+a=3;
+if(a/3)//-->error
+a=4;
+end_if
+end
+
+begin
+decimal a=1.2;
+a=3;
+if(a/3==6)
+a=4;
+end_if
+end
+
+begin
+decimal a=1.2;
+a=3;
+if(a/-3==6)
+a=4;
+end_if
+end
+
+begin
+int a=1;
+a=3;
+if()
+a=4;
+end_if
+end
+
+begin
+decimal a=1.2;
+a=3;
+if(-a/-3==6)
+a=4;
+end_if
+end
+
+begin
+decimal a;
+decimal b=a;//--> error a not init
+end
+
+begin
+int a;
+int b=a;//--> error a not init
+end
+
+begin
+decimal b=b;//-->error b not init
+end
+
+begin
+int b=b;//-->error b not init
+end
+
+begin
+decimal b=1;
+decimal c=b +c;//--> error
+end
+
+begin
+int b=1;
+int c=b +c;//-->error
+end
+
+begin
+decimal a;
+if()//-->error
+decimal b=a;//--> error a not init
+end_if
+end
+
+begin
+decimal a;
+if(a==3)//-->error
+decimal b=a;//--> error a not init
+end_if
+
+begin
+decimal a=2;
+int c;
+if(a==3)
+decimal b=c;//--> error a not init
+end_if
+end
+
+begin
+decimal a=2;
+string c="adfrg";
+if(a==3)
+decimal b=c;//--> error a not init
+end_if
+end
+
+begin
+decimal a=2;
+string c="adfrg";
+string d=c;
+if(a==3)
+decimal b=a;
+end_if
+end
+
+
+begin
+int b=1;
+if()//-->error
+int b=b;
+end_if
+end
+
+begin
+int b=1;
+if(a==3)
+int b=b;
+end_if
+end
+
+begin
+int b=1;
+if(b==3)
+int b=b;
+end_if
+end
+
+begin
+decimal a=9;
+decimal b=1.2;
+if(b!a)//-->error
+decimal c=b;
+end_if
+end
+
+
+begin
+decimal a;
+decimal b=1.2;
+if()
+decimal c=b;
+end_if
+
+begin
+decimal a=9;
+decimal b=1.2;
+if(b=>a)//-->error invalid operator should be >=
+decimal c=b;
+end_if
+end
+
+begin
+decimal a=9;
+decimal b=1.2;
+if(b=!a)//-->error
+decimal c=b;
+end_if
+end
+
+begin
+decimal a=9;
+decimal b=1.2;
+if(b=s!a)//-->error
+decimal c=b;
+end_if
+end
+
+begin
+decimal a=9;
+decimal b=1.2;
+if(b==s)//-->error
+decimal c=b;
+end_if
+end
+
+begin
+decimal a=9;
+decimal b=1.2;
+if(b s)//-->error
+decimal c=b;
+end_if
+end
+
+
+
+
+
+begin
+decimal a=9;
+decimal b=1.2;
+if(b!=a)
+decimal c=b;
+end_if
+end
+
+
+begin
+int a;
+int b=1;
+if()//-->error
+int c=b;
+end_if
+end
+
+begin
+decimal a=2.2;
+if()//-->error
+decimal b=a;
+else 
+decimal c=b;//--> error cos b is in a different scope
+end_if
+end
+
+begin
+decimal a=2.2;
+if(a==2.2)
+decimal b=a;
+else 
+decimal c=b;//--> error cos b is in a different scope
+end_if
+end
+
+begin
+decimal a=2.2;
+if(a==2.2)
+decimal b=a;
+else 
+decimal c=a;//--> error cos b is in a different scope
+end_if
+end
+
+begin
+decimal a=2.2;
+if()
+decimal b=a;
+else 
+decimal c=a;
+end_if
+end
+
+begin
+decimal a=2.2;
+if()
+decimal b=a;
+else 
+decimal c=a;
+for()
+decimal b=c;
+end_for
+end_if
+end
+
+
+begin
+decimal a=2.2;
+if()//-->error
+decimal b=a;
+else 
+decimal c=a;
+for()
+decimal b=d; //--> error cos d doesn't exist
+end_for
+end_if
+end
+
+
+begin
+decimal a=2.2;
+if(a=3)//-->error
+decimal b=a;
+else 
+decimal c=a;
+for()
+decimal b=d; //--> error cos d doesn't exist
+end_for
+end_if
+end
+
+begin
+decimal a=2.2;
+if()
+decimal b=a;
+else 
+decimal c=a;
+for()
+decimal b=d;
+end_for
+end_for// -->error cos of extra end_for
+end_if
+end
+
+
+begin
+decimal a=2.2;
+if(a==3)
+decimal b=a;
+else 
+decimal c=a;
+for()
+decimal b=d; //--> error cos d doesn't exist
+end_for
+end_if
+end
+
+begin
+decimal a=2.2;
+if()
+decimal b=a;
+for()
+decimal b=a;
+end_for
+else 
+decimal c=a;
+for()
+decimal b=a;
+end_for
+end_if
+end
+
+begin
+decimal a=2.2;
+if(b==3)//-->error not init
+decimal b=a;
+if(b==a)
+decimal b=a;
+end_if
+else 
+decimal c=a;
+for()
+decimal b=a;
+end_for
+end_if
+end
+
+begin
+decimal a=2.2;
+if(a==3)
+decimal b=a;
+if(b==a)
+decimal b=a;
+end_for//-->error
+else 
+decimal c=a;
+for()
+decimal b=a;
+end_for
+end_if
+end
+
+
+begin
+int a=2;
+if()
+decimal b=a;
+for()
+decimal c=b;
+end_for
+else 
+decimal c=a;
+for()
+decimal b=a;
+end_for
+decimal d=3;//-->error
+end_if
+decimal b=1.1;
+end
+
+begin
+int a=2;
+char c_der='b';
+c_der='e+f';//-->error
+
+if()
+decimal b=a;
+for()
+decimal c=b;
+end_for
+else 
+decimal c=a;
+for()
+decimal b=a;
+end_for
+decimal d=3;
+end_if
+decimal b=1.1;
+end
+
+begin
+int a=2;
+char c_der='b';
+c_der='e'+'f';//-->error
+
+if()
+decimal b=a;
+for()
+decimal c=b;
+end_for
+else 
+decimal c=a;
+for()
+decimal b=a;
+end_for
+decimal d=3;
+end_if
+decimal b=1.1;
+end
+
+begin
+int a=2;
+char c_der='b';
+c_der='e';
+
+if(c_der+2==3)//-->error
+decimal b=a;
+for()
+decimal c=b;
+end_for
+else 
+decimal c=a;
+for()
+decimal b=a;
+end_for
+decimal 
+end_if
+decimal b=1.1;
+end
+
+begin
+int a=2;
+char c_der='b';
+c_der='e';
+
+if(c_der==3)//-->error
+decimal b=a;
+for()
+decimal c=b;
+end_for
+else 
+decimal c=a;
+for()
+decimal b=a;
+end_for
+decimal d=3;
+end_if
+decimal b=1.1;
+end
+
+begin
+int a=2;
+char c_der='b';
+c_der='e';
+
+if(c_der==3&&a!=3||c_der!='d')
+decimal b=a;
+for()
+decimal c=b;
+end_for
+else 
+decimal c=a;
+for()
+decimal b=a;
+end_for
+decimal d=3;
+end_if
+decimal b=1.1;
+end
+
+begin
+int a=2;
+char c_der='b';
+c_der='e';
+
+if(c_der=='f'&&a!=3||c_der!="q")//-->error
+decimal b=a;
+for()
+decimal c=b;
+end_for
+else 
+decimal c=a;
+for()
+decimal b=a;
+end_for
+decimal d=3;
+end_if
+decimal b=1.1;
+end
+
+begin
+int a=2;
+char c_der='b';
+c_der='e';
+
+if(c_der=='f'&&a!=3||c_der!='s')
+decimal b=a;
+for()
+decimal c=b;
+end_for
+else 
+decimal c=a;
+for()
+decimal b=a;
+end_for
+decimal d=3;
+end_if
+decimal b=1.1;
+end
+
+
+
+
+
+begin
+decimal a=2.2;
+if()
+decimal b=a;
+for()
+decimal c=b;
+end_for
+else 
+decimal c=a;
+for()
+decimal b=a;
+end_for
+decimal c=3;//-->error
+end_if
+decimal b=1.1;
+end
+
+begin
+decimal a=2.2;
+if()
+decimal b=a;
+for()
+decimal c=b;
+while()
+decimal g=c;
+end_while
+end_for
+else 
+decimal c=a;
+for()
+decimal b=a;
+end_for
+end_if
+g=1.2;//-->error
+end
+
+
+begin
+decimal a=1.2;
+a=3.2; 
+end
+
+begin
+decimal a=1.2;
+a=3.2; 
+if()
+end_if
+end
+
+
+begin
+decimal a=1.2;
+a=3.2; 
+if()
+decimal b=a;
+a=3;
+end_if
+end
+
+begin
+readFromScreen();
+end
+
+begin
+decimal a=readFromScreen();
+a=1.2;
+end
+
+begin
+decimal a=1.2;
+decimal b=1+-2+-*3; //--> should give an error
+end
+
+begin
+decimal a=readFromScreen();
+if(a==3.456)
+end_if
+a=1.2;
+end
+
+begin
+decimal a=readFromScreen();
+if(a==3.456)
+end_if
+a=1.2;
+end
+
+begin
+decimal a=readFromScreen();
+for(a=a;a==3.456;a=a+1)
+end_for
+a=1.2;
+end
+
+begin
+decimal a=readFromScreen();
+if(a==printToScreen())//-->error
+end_if
+a=1.2;
+end
+
+begin
+decimal a=readFromScreen();
+if(a==3)
+printToScreen();
+end_if
+a=1.2;
+end
+
+begin
+decimal a=readFromScreen();
+if(a==3)
+a= printToScreen();//-->error
+end_if
+a=1.2;
+end
+
+
+begin
+decimal a=1.2+*3;//-->error
+end
+
+begin
+decimal a=3!=2;//--> error
+end
+
+begin
+string a=3!=2;//--> error
+end
+
+begin 
+decimal a=1+1;
+end
+
+begin 
+decimal a=1++1;//-->error
+end
+
+begin
+decimal a==3; //--> error
+end
+
+begin
+decimal a=3==2;//-->error
+end
+
+begin
+decimal a=(3;//-->error
+end
+
+begin
+int a=1.2;//--> type error
+end
+
+begin
+string a_6='j';
+end
+
+
+begin
+int a=1;
+end
+
+begin
+decimal a.8=2;//-->error
+end
+
+begin
+decimal a= 2 2;//-->error
+end
+
+begin
+decimal a=2/2;
+end
+
+begin
+char a='s';
+end
+
+begin
+char a='s;//-->error
+end
+
+begin
+char a='sa';//-->error
+end
+
+begin
+decimal a=1.2;
+a=3.2; 
+char b='2';
+if()
+decimal b=78;
+string c="asd";
+b=3;
+a=3;
+end_if
+for()
+a=5;
+b='3';
+string d="deffeffwe";
+end_for
+int h_i=4;
+end
+
+begin
+decimal a=1.2;
+a=3.2; 
+char b='2';
+if(b=='4')
+decimal b=78+4.5;
+b=-a;
+string c="asd";
+b=3;
+a=3;
+end_if
+for()
+a=5;
+b='3';
+string d="deffeffwe";
+end_for
+int h_i=4;
+end
+
+
+begin
+decimal a=1.2;
+a=3.2; 
+char b='2';
+if()
+decimal b=78;
+end_if
+int h_i=4;
+end
+
+begin
+decimal a=1.2;
+a=3.2; 
+char b='2';
+if(a==4)
+decimal b=78;
+end_if
+int h_i=4;
+end
+
+begin
+decimal a=1.2;
+a=3.2; 
+char b='2';
+if()
+decimal b=78;
+string c="asd";
+b=3;
+
+begin
+int a =7;
+for(a=2;a==3;a=a+1)
+end_for
+end
+
+begin
+int a =7;
+for(a=a+2;a==3;a=a+1)
+end_for
+end
+
+begin
+int a =7;
+for(a=a+2;a==3||a>4;a=a+1)
+end_for
+end
+
+begin
+int a =7;
+for(a=a+2;a==3||a>4;a=a-1)
+end_for
+end
+
+begin
+int a =7;
+for(a=a+2;a==3||a>4;)//-->error
+end_for
+end
+
+begin
+int a =7;
+for(;a==3||a>4;)//-->error
+end_for
+end
+
+begin
+int a =7;
+for()//-->error
+end_for
+end
+
+
+begin
+decimal a=1.2;
+a=3.2; 
+char b='2';
+if(a==4&&)//-->errro
+decimal b=78;
+end_if
+int h_i=4;
+end
+
+begin
+decimal a=1.2;
+a=3.2; 
+char b='2';
+if(a==4&&b!='d')
+decimal b=78;
+end_if
+int h_i=4;
+end
+
+a=3;//-->error insert end_if here
+for()
+a=5;
+b=3;
+string d="deffeffwe";
+end_for
+int h_i=4;
+end
+
+begin
+decimal a=1.2;
+a=3.2; 
+char b='2';
+if()
+decimal b=78;
+string c="asd";
+b=3;
+a=3;//-->error insert end_if here
+for()
+a=5;
+b='3';//-->considered error due to missing end_if
+string d="deffeffwe";
+end_for
+int h_i=4;
+end
+
+begin
+decimal a=1.2;
+a=3.2; 
+char b='2';
+if()
+decimal b=78;
+string c="asd";
+b=3;
+a=3;
+end_if
+for()
+for()
+char fg='a';
+end_for
+a=5;
+b='3';
+string d="deffeffwe";
+end_for
+int h_i=4;
+end
+
+begin
+char a='w';
+int b=4;
+if(a>='s')//-->error
+end_if
+end
+
+begin
+printToScreen("a");
+end
+
+
+begin
+char a='w';
+int b=4;
+for(int b=2;b<=3&&a<'s';b=b+1)
+end_for
+end
+
+begin
+char a='w';
+int b=4;
+if(b<3)
+end_if
+end
+
+
+begin
+decimal a=1.2;
+a=3.2; 
+char b='2';
+if(b!='a'&&a>3.2)
+decimal b=78;
+string c="asd";
+b=3;
+a=3;
+end_if
+for(int ela=2;ela<1;ela=-ela-1)
+for(ela=4;ela>=3;ela=ela+a)//-->error
+char fg='a';
+end_for
+a=5;
+b='3';
+string d="deffeffwe";
+end_for
+int h_i=4;
+end
+
+
+begin
+decimal a=1.2;
+a=3.2; 
+char b='2';
+if(b!='a'&&a>3.2)
+decimal b=78;
+string c="asd";
+b=3;
+a=3;
+end_if
+for(int ela=2;ela<1;ela=-ela-1)
+for(ela=4;ela>=3;ela=ela+76)
+char fg='a';
+end_for
+a=5;
+b='3';
+string d="deffeffwe";
+end_for
+int h_i=4;
+end
+
+begin
+int a =3
+for(a<=3;a=a+1;a=2)//-->error
+end_for
+end
+
+begin
+int a =3
+char b='3';
+string as="1234";
+for(as=as;as=="avc";as=as+1)
+end_for
+end
+
+
+begin
+decimal a=1.2;
+a=3.2; 
+char b='2';
+if((b=='d'&&a=='f')||)//-->error
+decimal b=78;
+string c="asd"+"3";
+b=3;
+a=3;
+end_if
+for()
+for()
+char fg='a';
+end_for
+a=5;
+b='3';
+string d="deffeffwe";
+d=readFromScreen();
+end_for
+int h_i=4;
+end
+
+begin
+decimal a=1.2;
+a=3.2; 
+char b='2';
+if((b=='d'&&a=='f')||9==0)//-->error
+decimal b=78;
+string c="asd"+"3";
+b=3;
+a=3;
+end_if
+for()
+for()
+char fg='a';
+end_for
+a=5;
+b='3';
+string d="deffeffwe";
+d=readFromScreen();
+end_for
+int h_i=4;
+end
+
+begin
+decimal a=1.2;
+a=3.2; 
+char b='2';
+if((b=='d'&&a==2)||9==0)
+decimal b=78;
+string c="asd"+"3";
+b=3;
+a=3;
+end_if
+for()
+for()
+char fg='a';
+end_for
+a=5;
+b='3';
+string d="deffeffwe";
+d=readFromScreen();
+end_for
+int h_i=4;
+end
+
+begin
+decimal a=1.2;
+a=3.2; 
+char b='2';
+if((b=='d'&&a==2)||(9==0)//-->error
+decimal b=78;
+string c="asd"+"3";
+b=3;
+a=3;
+end_if
+for()
+for()
+char fg='a';
+end_for
+a=5;
+b='3';
+string d="deffeffwe";
+d=readFromScreen();
+end_for
+int h_i=4;
+end
+
+begin
+decimal a=1.2;
+a=3.2; 
+char b='2';
+while((b=='d'&&a==2)||(9==0)//-->error
+decimal b=78;
+string c="asd"+"3";
+b=3;
+a=3;
+end_while
+for()
+for()
+char fg='a';
+end_for
+a=5;
+b='3';
+string d="deffeffwe";
+d=readFromScreen();
+end_for
+int h_i=4;
+end
+
+begin
+decimal a=1.2;
+a=3.2; 
+char b='2';
+while((b=='d'&&a==2)||(9==0))
+if(b=='c')
+end_if
+decimal b=78;
+string c="asd"+"3";
+b=3;
+a=3;
+end_while
+for()
+for()
+char fg='a';
+end_for
+a=5;
+b='3';
+string d="deffeffwe";
+d=readFromScreen();
+end_for
+int h_i=4;
+end
+
+begin
+decimal a=1.2;
+a=3.2; 
+char b='2';
+if()
+decimal b=78;
+string c="asd"+"3";
+b=3;
+a=3;
+end_if
+for()
+for()
+char fg='a';
+end_for
+a=5;
+b='3';
+string d="deffeffwe";
+d=readFromScreen();
+end_for
+int h_i=4;
+end
+
+begin
+decimal a= 2;
+a= 3+readFromScreen();//-->error
+end
+
+begin
+decimal a= 2+readFromScreen();//-->error
+a= 3+readFromScreen();
+end
+
+begin
+decimal a=(1);
+end
+
+begin
+decimal a=();//-->error
+end
+
+begin
+decimal a=3;
+int d=4;
+string c="a";
+decimal b=(d+c);//-->error
+end
+
+begin
+int int_i=3;
+end
+
+begin
+decimal a=1.2;
+a=3.2; 
+char b='2';
+while((b=='d'&&a==2)||(9==0))//-->error
+decimal b=78;
+string c="asd"+"3";
+b=3;
+a=3;
+end_while
+for()
+for()
+char fg='a';
+end_for
+a=5;
+b='3';
+string d="deffeffwe";
+d=readFromScreen();
+end_for
+int h_i=4;
+end
+
+-------------------------------------------------------------------------Codez-------------------------------------------------------------
+begin
+int a=3;
+if(a==3)//enter
+int b=4;
+end_if
+end
+
+begin
+int a=3;
+if(a!=3)// not enter
+int b=4;
+end_if
+int c=9;
+end
+
+begin
+int a=3;
+if(a==3||a<5)
+int b=4;
+end_if
+end
+
+begin
+int a=3;
+if(a+2==3)
+int b=4;
+end_if
+end
+
+begin
+int a=3;
+if(a>=3||a<5)
+int b=4;
+end_if
+end
+
+begin
+int a=3;
+if(a>3||a<5)
+int b=4;
+end_if
+end
+
+begin
+int a=3;
+sentence b="as";
+if(b=="a")
+int b=4;
+end_if
+end
+
+begin
+int a=3;
+sentence b="as";
+if(b!="a")
+int b=4;
+
+end_if
+end
+
+begin
+int a=3;
+sentence b="as";
+if(b!="a")
+int b=4;
+if(b==4)
+int c=5;
+else
+int g=0;
+end_if
+end_if
+end
+
+begin
+int a=3;
+sentence b="as";
+if(b!="a")
+int b=4;//in
+if(b==4)
+int c=5;//in
+else
+int g=0;
+end_if
+else 
+int l=2;
+end_if
+end
+
+begin
+int a=3;
+sentence b="as";
+if(b!="a")//in
+int b=4;
+if(b==5)//not
+int c=5;
+else //in
+int g=0;
+end_if
+else //not
+int l=2;
+end_if
+end
+
+begin
+int a=3;
+sentence b="as";
+if(b=="a"||b!='a')//error 
+int b=4;
+if(b==5)
+int c=5;
+else
+int g=0;
+end_if
+else 
+int l=2;
+end_if
+end
+
+
+begin
+int a=3;
+sentence b="as";
+        if(b=="a") 
+        int b=4;
+                if(b==5)
+                int c=5;
+                else
+                int g=0;
+                end_if
+        else 
+        int l=2;
+        end_if
+end
+
+begin
+int a=3;
+sentence b="as";
+        if(b=="a") 
+        int b=4;
+                if(b==5)
+                int c=5;
+                else
+                int g=0;
+                end_if
+        else 
+        int l=2;
+                if(l<2)
+                end_if
+        end_if
+end
+
+begin
+int a=3;
+sentence b="as";
+        if(b=="a") 
+        int b=4;
+                if(b==5)
+                int c=5;
+                else
+                int g=0;
+                end_if
+        else 
+        int l=2;
+                if(l<2)
+                l=4;
+                else
+                decimal hi=6.7;
+                end_if
+        end_if
+end
+
+begin
+int a=3;
+sentence b="as";
+int l=2;
+                if(l<2)
+                l=4;
+                else
+                decimal hi=6.7;
+                end_if
+   
+end
+
+begin
+int a=3;
+sentence b="as";
+        if(b=="a") 
+        int b=4;
+                if(b==5)
+                int c=5;
+                else
+                int g=0;
+                end_if
+        else 
+        int l=2;
+                if(l<2)
+              l=4;
+	else//error
+	decimal hi=6.7;
+end_if
+        end_if
+end
+
+begin
+int a=3;
+sentence b="as";
+if(b!="as")
+int b=4;
+else 
+int l=2;
+end_if
+end
+
+begin
+int a=3;
+sentence b="as";
+if(b!="as")
+int b=4;
+if(b==5)
+int c=5;
+else
+int g=0;
+end_if
+else 
+int l=2;
+end_if
+end
+
+begin
+int a=3;
+sentence b="as";
+char f='s';
+if(f=='as')//-->error
+int b=4;
+end_if
+end
+
+
+
+begin
+int a=3;
+sentence b="as";
+        if(b=="a") 
+        int b=4;
+                if(b==5)
+                int c=5;
+                else
+                int g=0;
+                end_if
+        else 
+        int l=2;
+             
+        end_if
+end
+
+begin
+int a=3;
+sentence b="as";
+        if(b=="a") //not enter
+        int b=4;
+                if(b==5)//not enter
+                int c=5;
+                else // not
+                int g=0;
+                end_if
+        else //enter
+        int l=2;
+            if(l==1)//not enter
+int i=2;
+end_if
+
+        end_if
+end
+
+begin
+int a=3;
+sentence b="as";
+        if(b=="a") //not enter
+        int b=4;
+                if(b==5)//not enter
+                int c=5;
+                else//not enter
+                int g=0;
+                end_if
+        else //enter
+        int l=2;
+            if(l==1)//not enter
+int i=3;
+else //enter
+int hi=304;
+end_if
+
+        end_if
+end
+
+
+
+begin
+int a=3;
+sentence b="as";
+        if(b=="a") 
+        int b=4;
+                if(b==5)
+                int c=5;
+	if(b==5)//-->gives me an invalid identifier name here
+int k=67;
+end_if
+                else
+                int g=0;
+                end_if
+        else 
+        int l=2;
+             
+        end_if
+end
+
+----------------------test if-----------------------------------
+begin
+int a=5;
+if(a==5)//enter
+int b=6;
+end_if
+end
+
+begin
+int a=5;
+if(a@=5)//invalid char
+int b=6;
+end_if
+end
+
+
+begin
+int a=5;
+if(a!=5)//not enter
+int b=6;
+end_if
+end
+
+begin
+int a=5;
+if(a>=5)//enter
+int b=6;
+end_if
+end
+
+begin
+int a=5;
+if(a>=5)//enter with var hiding
+int a=6;
+end_if
+end
+
+
+begin
+int a=5;
+if(a>5)//not enter
+int a=6;
+end_if
+end
+
+begin
+int a=5;
+if(a>4)//enter
+int a=6;
+end_if
+end
+
+begin
+int a=5;
+if(a<4)//not enter
+int a=6;
+end_if
+end
+
+begin
+int a=5;
+if(a<=5)//enter
+int a=6;
+end_if
+end
+
+begin
+int a=5;
+if(a+1<=5)//not enter
+int a=6;
+end_if
+end
+
+begin
+int a=5;
+if(a+1<=5)//not enter
+int a=6;
+end_if
+sentence b="waloop";
+end
+
+begin
+int a=5;
+if(a<=5)//enter
+int a=6;
+if(a==6)//enter
+end_if
+char c='f';
+end_if
+sentence b="waloop";
+end
+
+begin
+int a=5;
+if(a<=5)//enter
+int a=6;
+if(a<=6)//enter
+int a=9;
+end_if
+char c='f';
+end_if
+sentence b="waloop";
+end
+
+begin
+int a=5;
+if(a<=5)//enter
+int a=6;
+if(a<6)//enter
+int a=9;
+end_if
+char c='f';
+end_if
+sentence b="waloop";
+end
+
+begin
+int a=5;
+if(a<=5)//enter
+int a=6;
+if(a>=6)//enter
+end_if
+char c='f';
+end_if
+sentence b="waloop";
+end
+
+begin
+int a=5;
+if(a<=5)//enter
+int a=6;
+if(a!=6)//not enter
+int a=9;
+end_if
+char c='f';//-->yes
+end_if
+sentence b="waloop";
+end
+
+begin
+int a=5;
+if(a<=5)//enter
+int a=6;
+if(a!=6)//not enter
+int d=0;
+end_if
+char c='f';//yes
+end_if
+sentence b="waloop";//yes
+end
+
+begin
+int a=5;
+if(a<=5)//enter
+int a=6;
+if(a!=6)//not enter
+int d=0;
+end_if
+end_if
+sentence b="waloop";
+if(b=="waloop")//enter
+decimal f=9.8;
+end_if
+end
+
+begin
+int a=5;
+if(a<=5)//enter
+int a=6;
+if(a!=6)//not enter
+int d=0;
+end_if
+end_if
+sentence b="waloop";
+if(b>="waloop")//error
+decimal f=9.8;
+end_if
+end
+
+begin
+int a=5;
+if(a<=5)//enter
+int a=6;
+else //not enter
+sentence c="wakakak";
+end_if
+int d=0;//yes
+end
+
+begin
+int a=5;
+if(a<5)// not enter
+int a=6;
+if(a!=6)//not enter
+end_if
+end_if
+sentence b="waloop";//yes
+if(b=="waloop")//enter
+decimal f=9.8;
+end_if
+end
+
+begin
+int a=5;
+if(a>=5)//enter
+int a=6;
+else//not enter
+sentence c="wakakak";
+end_if
+int d=0;
+end
+
+begin
+int a=5;
+if(a>=5)//enter
+int a=6;
+else
+end_if
+int d=0;
+end
+
+
+begin
+int a=5;
+if(a>5)//not enter
+int a=6;
+else // enter
+sentence c="wakakak";
+end_if
+int d=0;
+end
+
+begin
+int a=5;
+if(a>5)//not enter
+int a=6;
+else // enter
+end_if
+int d=0;
+end
+
+------------------------with else----------------
+
+begin
+int a=5;
+if(a<=5)// enter
+int a=6;
+if(a==6)//enter
+end_if
+else // not enter
+sentence f="goog";
+end_if
+int d=0;
+end
+
+begin
+int a=5;
+if(a<=5)//enter
+int a=6;
+if(a==6)//enter
+decimal y_a=3.45;
+end_if
+else // not enter
+sentence f="goog";
+end_if
+int d=0;
+end
+
+begin
+int a=5;
+if(a<=5)// enter
+int a=6;
+if(a==6)//enter
+decimal y_a=3.45;
+else //not enter
+int u=7;
+end_if
+else //not enter
+sentence f="goog";
+end_if
+int d=0;
+end
+//
+begin
+int a=5;
+if(a<=5)//enter
+int a=6;
+if(a!=6)//not enter
+decimal y_a=3.45;
+else //enter
+sentence u="uuuu";
+end_if
+else // not enter
+sentence f="goog";
+end_if
+int d=0;
+end
+//
+begin
+int a=5;
+if(a!=5)//not enter
+int a=6;
+if(a!=6)//not enter
+decimal y_a=3.45;
+else//not enter
+sentence u="uuuu";
+end_if
+else // enter
+sentence f="goog"; //some prob here not entering the else
+end_if
+int d=0;
+end
+
+begin
+int a=5;
+if(a!=5)//not enter
+int a=6;
+if(a!=6)//not enter
+decimal y_a=3.45;
+end_if
+else // enter
+sentence f="goog";
+end_if
+int d=0;
+end
+
+//not working yet
+begin //1
+int a=5;
+if(a!=5)//not enter 2
+int a=6;
+if(a!=6)//not enter 3
+decimal y_a=3.45;
+else //not enter pop 3, 4
+sentence u="uuuu";
+end_if //pop 4
+else // enter pop 2 enter 5
+sentence f="goog";
+if(a==5)//enter //-->problem here is that it is reading the wrong a, ie a=6
+decimal k=9.0;
+end_if
+end_if
+int d=0;
+end
+
+begin
+int a;
+a=6;
+end
+
+begin
+a=6;//-->must give error cos a not declared 
+end
+
+begin
+int a=5;
+if(a>5)//not enter
+int a=6;
+else // enter
+decimal w=2.9;
+if(w==2.9)//enter
+int w=6;
+else //not enter
+sentence f_r="wer";
+end_if
+end_if
+int d=0;
+end
+
+begin
+int a=5;
+if(a>5)//not enter
+int a=6;
+else // enter
+decimal w=2.9;
+if(w!=2.9)//not enter
+int w=6;
+else//enter
+sentence f_r="wer";
+end_if
+end_if
+int d=0;
+end
+
+begin
+int a=5;
+if(a>5)//not enter
+int a=6;
+else // enter
+decimal w=2.9;
+if(w!=2.9)
+int w=6;
+else
+sentence f_r="wer";
+end_if
+else//error.. extra else
+end_if
+int d=0;
+end
+
+begin
+int a=5;
+if(a>5)//not enter
+int a=6;
+else // enter
+decimal w=2.9;
+if(w!=2.9)
+int w=6;
+else
+sentence f_r="wer";
+//error missing end_if
+else//error
+end_if
+int d=0;
+end
+
+
+
+begin //1
+int a=5;
+if(a!=5)//not enter 2
+int a=6;
+if(a!=6)//not enter 3
+decimal y_a=3.45;
+else //not enter pop 3, 4
+sentence u="uuuu";
+end_if //pop 4
+else // enter pop 2 enter 5
+sentence f="goog";
+if(a==5)//enter 
+decimal k=9.0;
+else
+decimal k=0.25;
+end_if
+if(a==5)//enter
+char d='s';
+end_if
+end_if
+int d=0;
+end
+
+
+begin //1
+int a=5;
+if(a!=5)//not enter 2
+int a=6;
+if(a!=6)//not enter 3
+decimal y_a=3.45;
+else //not enter pop 3, 4
+sentence u="uuuu";
+end_if //pop 4
+else // enter pop 2 enter 5
+sentence f="goog";
+if(a==5)//enter 
+decimal k=9.0;
+else
+decimal k=0.25;
+end_if
+if(a==5)//enter
+char d='s';
+end_if
+end_if
+if(a!=4)//enter
+int h=9;
+else//not enter
+int g=13;
+end_if
+int d=0;
+end
+
+
+
+begin //1
+int a=5;
+if(a==5)//enter 2
+int a=6;
+if(a!=6)//not enter 3
+decimal y_a=3.45;
+else // enter pop 3, 4
+sentence u="uuuu";
+end_if //pop 4
+else // not enter pop 2 enter 5
+sentence f="goog";
+if(a==5)//not enter 
+decimal k=9.0;
+else
+decimal k=0.25;
+end_if
+if(a==5)//not enter
+char d='s';
+end_if
+end_if
+if(a!=4)//enter
+int h=9;
+else//not enter
+int g=13;
+end_if
+int d=0;
+end
+
+begin //1
+int a=5;
+if(a==5)//not enter 2
+int a=6;
+if(a==6)// enter 3
+decimal y_a=3.45;
+else //not enter pop 3, 4
+sentence u="uuuu";
+end_if //pop 4
+else // enter pop 2 enter 5
+sentence f="goog";
+if(a==5)//enter 
+decimal k=9.0;
+else
+decimal k=0.25;
+end_if
+if(a==5)//enter
+char d='s';
+end_if
+end_if
+if(a!=4)//enter
+int h=9;
+else//not enter
+int g=13;
+end_if
+int d=0;
+end
+
+---------------------------------------while codez------------------------------------------------
+begin
+int a=3;
+while(a==3)//enter
+a=a+1;
+end_while
+end
+
+begin
+int a=3;
+while(a==3)//enter
+a=a+1;
+end_while
+printToScreen(a);
+end
+
+
+begin
+int a=3;
+while(a!=3)// not enter
+a=a+1;
+end_while
+end
+
+begin
+int a=3;
+while(a!=5)//enter
+a=a+1;
+end_while
+end
+
+//not working yet
+//infinite loop or something met--> in blockRollBack0 occured
+begin
+int a=3;
+while(a!=5)//enter
+int b=3;
+while(b==3)
+b=b+2;
+end_while
+a=a+1;
+end_while
+end
+
+begin
+int a=3;
+while(a==3)//enter
+a=a+1;//4
+int b=9;
+while(a==3)
+b=10;
+end_while
+end_while
+end
+
+//need to implement the infinite loop counter
+begin
+int a=3;
+while(a!=5)//enter
+int b=3;
+while(b==3)//enter
+b=b+2;
+while(b!=4)//enter --> infinite loop// program hangs
+b=6;
+end_while
+b=b-1;
+end_while
+a=a+1;
+end_while
+end
+
+
+begin
+int a=3;
+while(a!=5)//enter
+int b=3;
+while(b==3)//enter
+b=b+2;
+while(b==5)//enter
+b=6;
+end_while
+end_while
+a=a+1;
+end_while
+end
+
+
+begin
+int a=9;
+while(a==9)
+if(a==9)
+a=10;
+end_if
+end_while
+end
+
+begin
+int a=9;
+while(a==9)
+if(a==9)
+a=10;
+else
+a=5;
+end_if
+end_while
+end
+
+
+begin
+int a=3;
+while(a==3)//enter
+a=a+1;//4
+int b=9;
+while(a==4)//infinite loop
+b=10;
+end_while
+end_while
+end
+
+begin
+int a=3;
+if(a!=3)// not enter
+int b=4;
+else
+int c=9;
+if(c==9)
+while(c==9)
+int g=8;
+c=c+1;
+end_while
+else
+c=13;
+end_if
+end_if
+int h=0;
+end
+
+
+
+
+--------------------------------------for code---------------------------------------------------------------------------
+begin
+int a=9;
+for(a=10;a<12;a=a+1)
+int b=0;
+end_for
+end
+//910011012
+
+begin
+for(int a=9;a<10;a=a+1)
+int b=9;
+end_for
+end
+//9910
+
+begin
+for(int a=9;a<10;a=a+1)
+int a=9;//---> must give an error because it is a redeclaration
+end_for
+end
+
+
+begin
+for(int a=9;a<10;a=a+1)
+int b=9;
+for(b=9;b<10;b=b+1)
+int c=7;
+if(c==7)
+c=8;
+end_if
+end_for
+end_for
+end
+
+begin
+for(int a=9;a<10;a=a+1)
+int b=9;
+for(b=9;b<11;b=b+1)
+int c=7;
+if(c==8)
+c=8;
+else
+c=3;
+end_if
+end_for
+end_for
+end
+//9997310731110
+
+begin
+for(int a=9;a<10;a=a+1)
+int b=9;
+for(b=9;b<11;b=b+1)
+int c=7;
+if(c==7)
+c=8;
+end_if
+end_for
+end_for
+end
+//9997810781110
+
+begin
+int a=9;
+for(a=10;a<12;a=a+1)
+int b=0;
+for(b=0;b<3;b=b+1)
+char a='d';
+end_for
+end_for
+end
+//91000d1d2d31100d1d2d312
+
+begin
+int a=9;
+for(a=10;a<12;a=a+1)
+int b=0;
+if(a==11)
+for(b=0;b<3;b=b+1)
+char a='d';
+end_for
+end_if
+end_for
+end
+//91001100d1d2d312
+
+begin
+int a=9;
+for(a=10;a<12;a=a+1)
+int b=0;
+if(a==10)
+for(b=0;b<3;b=b+1)
+char a='d';
+end_for
+end_if
+end_for
+end
+//91000d1d2d311012
+
+//code has infinite loop
+begin
+int a=9;
+for(a=10;a<12;a=a+1)
+int b=0;
+if(a==10)
+for(b=0;b<3;b=b+1)
+char a='d';
+end_for
+end_if
+while(b==3)//is infinite loop
+printToScreen("Helooooo!!");
+end_while
+end_for
+end
+
+
+begin
+int a=9;//9
+for(a=10;a<12;a=a+1)//10
+int b=0;//0
+if(a==10)//enter first time
+for(b=0;b<3;b=b+1)//0,1,2,3
+char a='d';
+end_for
+end_if
+while(b<5)//b first time is 3,4 then 5 , the next times b=0...5 till a=11 at a 12 not execute
+printToScreen("Helooooo!!");
+b=b+1;
+end_while
+end_for
+end
+
+begin
+int a=9;
+for(a=10;a<12;a=a+1)
+int b=0;
+if(a==10)
+for(b=0;b<3;b=b+1)
+char a='d';
+while(b==3)//not enter
+printToScreen("Helooooo!!");
+b=b+1;
+end_while
+end_for
+end_if
+end_for
+end
+
+begin
+int a=9;//1
+for(a=10;a<12;a=a+1)//2
+int b=0;//2
+if(a==10)//3
+for(b=0;b<3;b=b+1)//4
+char a='d';//4
+while(b==2)//enter 5
+printToScreen("Helooooo!!");//5
+b=b+1;//5 backwards
+end_while//4
+end_for//3
+end_if//2
+end_for//1
+end
+
+//91000d1d2dHelooooo!!
+//3411012
+
+
+//sandwich problem -- working. Gives invalid end 
+//has been handled
+begin
+int a=9;
+if(a==9)
+while(a!=9)
+end_if
+end_while
+end
+
+begin
+int a=9;
+for(a=10;a<12;a=a+1)
+int b=0;
+while(a==11)
+for(b=0;b<3;b=b+1)
+char a='d';
+end_for
+a=a+1;
+end_while
+end_for
+end
+
+
+begin
+for(int a=1;a<2;a=a+1)
+if(a==1)
+int b=8;
+else
+if(a==2)
+int c=9;
+end_if
+int d=5;
+end_if
+end_for
+end
+
+---------------------------Mamma Code----------------
+
+
+begin
+int i=1;
+int j=3;
+int c=0;
+for(i=1;i<=10;i=i+1)
+j=j+i;
+if(j>5&&j<=9)
+if(i<=2)
+printToScreen("i value after i<=2 is "+i);
+else
+printToScreen(i+" is greater than 2 of else");
+end_if
+else
+printToScreen("j value is "+j);
+end_if
+printToScreen("c value is "+c);
+printToScreen("j value after ifs is "+j);
+end_for
+end
+
+
+begin
+int i=1;
+int j=3;
+int c=0;
+int z=12;
+for(i=1;i<=10;i=i+1)
+j=j+i;
+if(j>5&&j<=9)
+if(i<=2)
+printToScreen("i value after i<=2 is "+i);
+else
+printToScreen(i+" is greater than 2 of else");
+end_if
+else
+printToScreen("j value b4 while is "+j);
+while(z>5)
+z=z+1;
+printToScreen("z values are "+z);
+end_while
+end_if
+printToScreen("c value is "+c);
+printToScreen("j value after ifs is "+j);
+end_for
+end
+
+
+
+//answer given for first 
+13014j value is 4
+c value is 0
+j value after ifs is 4
+262
+c value is 0
+j value after ifs is 6
+393 is greater than 2
+c value is 0
+j value after ifs is 9
+413j value is 13
+c value is 0
+j value after ifs is 13
+518j value is 18
+c value is 0
+j value after ifs is 18
+624j value is 24
+c value is 0
+j value after ifs is 24
+731j value is 31
+c value is 0
+j value after ifs is 31
+839j value is 39
+c value is 0
+j value after ifs is 39
+948j value is 48
+c value is 0
+j value after ifs is 48
+1058j value is 58
+c value is 0
+j value after ifs is 58
+11
+
+
+//answer for 2nd
+1301214j value is 4
+13z values are 13
+14z values are 14
+15z values are 15
+16z values are 16
+17z values are 17
+18z values are 18
+19z values are 19
+20z values are 20
+21z values are 21
+22z values are 22
+23z values are 23
+24z values are 24
+25z values are 25
+26z values are 26
+27z values are 27
+28z values are 28
+29z values are 29
+30z values are 30
+31z values are 31
+32z values are 32
+33z values are 33
+Infinite Loop found at line:16
+
+--------------------------------------Hypothesis testing----------------------
+
+begin
+int a=2;
+while(a==2)
+a=a+1;
+end_while
+end
+
+
+begin
+int i=1;
+int j=3;
+int d=j+i;
+end
