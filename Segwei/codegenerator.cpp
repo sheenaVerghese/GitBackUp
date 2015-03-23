@@ -119,6 +119,7 @@ int codegenerator::forLoopVars(int i,int key=1)
     int temp=i;
     if(key==1)
     {
+        loop=1;
         cout<<"in key =1"<<endl;
         loopVars.push_back(code.at(tempForPos));
         loopVars.push_back(code.at(tempForPos+1));
@@ -194,6 +195,7 @@ int codegenerator::forLoopVars(int i,int key=1)
     }
    // printTrackSemiColon();
    // cout<<"find ; tok= "<<parseTokenizer.at(i).tokens<<endl;
+    loop=0;
     return i;
 }
 
@@ -358,7 +360,7 @@ int codegenerator::startCode()
 
                         break;
                  case scannar::FOR:
-                        loop=3;
+                        loop=0;
                         tempForPos=i;
                         blockInitialisation();
                         cout<<"block data is in for ----------------------------+++++++++++++ "<<blockData<<endl;
@@ -1916,7 +1918,7 @@ int codegenerator::computeValues(int i=0)
                              string result;
                             if(trackSemiColon.at(pos).variable.compare("/")==0)
                             {
-                                if(tokenType==scannar::T_INT||tokenType==scannar::T_INTLit)
+                                if((tokenType==scannar::T_INT||tokenType==scannar::T_INTLit)&&loop!=1)
                                 {
                                  result=divInt(numerator,denominator);
                                 }
@@ -1928,7 +1930,7 @@ int codegenerator::computeValues(int i=0)
                             }
                             else if(trackSemiColon.at(pos).variable.compare("/-")==0)
                             {
-                                if(tokenType==scannar::T_INT||tokenType==scannar::T_INTLit)
+                                if((tokenType==scannar::T_INT||tokenType==scannar::T_INTLit)&&loop!=1)
                                 {
                                 result=divIntNeg(numerator,denominator);
                                 }
@@ -1939,7 +1941,7 @@ int codegenerator::computeValues(int i=0)
                             }
                             else if(trackSemiColon.at(pos).variable.compare("*")==0)
                             {
-                                if(tokenType==scannar::T_INT||tokenType==scannar::T_INTLit)
+                                if((tokenType==scannar::T_INT||tokenType==scannar::T_INTLit)&&loop!=1)
                                 {
                                 result=mulInt(numerator,denominator);
                                 }
@@ -1950,7 +1952,7 @@ int codegenerator::computeValues(int i=0)
                             }
                             else
                             {
-                                if(tokenType==scannar::T_INT||tokenType==scannar::T_INTLit)
+                                if((tokenType==scannar::T_INT||tokenType==scannar::T_INTLit)&&loop!=1)
                                 {
                                 result=mulIntNeg(numerator,denominator);
                                 }
@@ -2021,7 +2023,7 @@ int codegenerator::computeValues(int i=0)
                              string result;
                             if(trackSemiColon.at(pos).variable.compare("+")==0)
                             {
-                                if(tokenType==scannar::T_INT||tokenType==scannar::T_INTLit)
+                                if((tokenType==scannar::T_INT||tokenType==scannar::T_INTLit)&&loop!=1)
                                 {
                                  result=addInt(numerator,denominator);
                                 }
@@ -2032,7 +2034,8 @@ int codegenerator::computeValues(int i=0)
                             }
                             else
                             {
-                                if(tokenType==scannar::T_INT||tokenType==scannar::T_INTLit)
+                                //goes into this if it is of type int and not a loop comparison part
+                                if((tokenType==scannar::T_INT||tokenType==scannar::T_INTLit)&&loop!=1)
                                 {
                                 result=minusInt(numerator,denominator);
                                 }
