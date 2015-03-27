@@ -1795,7 +1795,15 @@ int codegenerator::computeValues(int i=0)
         //if read from screen
         if(trackSemiColon.at(2).tokens==scannar::READ)
         {
-             QString text = QInputDialog::getText(this, tr("Enter value"),tr("Value:"), QLineEdit::Normal,"", 0);
+            bool ok;
+             QString text = QInputDialog::getText(this, tr("Enter value"),tr("Value:"), QLineEdit::Normal,"", &ok);
+             if(text.isEmpty()==true||!ok)
+             {
+                 displayResult->insertPlainText("Error: Invalid input given. Program Stopped!");
+                 error=50;
+                 return 50;
+
+             }
              string value=text.QString::toStdString();
              if(tokenType==scannar::T_DEC)
              {
@@ -2350,7 +2358,7 @@ void codegenerator::updateEnvTable(int i)
         value=trackSemiColon.at(2).variable;
     }
     environment.at(i).value=value;
-    displayResult->insertPlainText(QString::fromStdString(value));
+   // displayResult->insertPlainText(QString::fromStdString(value));
     cout<<"in 924 updateEnvTable value is "<<environment.at(i).value<<" variable is "<<environment.at(i).variable<<" i value is "<<i<<endl;
 }
 
