@@ -279,8 +279,10 @@ void GUI::open()
 {
     fileName = QFileDialog::getOpenFileName(this, tr("Open File"),
                                                      "C://",
-                                                     tr("All files (*.*)"));
+                                                     tr("Text Files (*.txt)"));
+
     QFile file(fileName);
+
     if(!file.open(QIODevice::ReadOnly)){
         QMessageBox::information(0,"File Open Error",file.errorString());
 

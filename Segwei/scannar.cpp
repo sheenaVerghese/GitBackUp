@@ -23,7 +23,7 @@
 //default constructor
 scannar::scannar()
 {
-    cout << "in default scannar" << endl;
+   // cout << "in default scannar" << endl;
 }
 
 //constructor called from GUI
@@ -34,9 +34,9 @@ scannar::scannar(string str):
 
 {
 
-    cout << str.c_str();
+   // cout << str.c_str();
     srcCode = str;
-    cout <<"hello i'm through"<<endl;
+    //cout <<"hello i'm through"<<endl;
     initialiseMap();
 
 }
@@ -71,13 +71,13 @@ int scannar::splitStr()
                   &&srcCode.substr(delimiter,1).compare("'")!=0
                   &&srcCode.substr(delimiter,2).compare("//")!=0)
           {
-          cout<<"length is "<<length<<endl;
+        //  cout<<"length is "<<length<<endl;
 
          //length>0 because when then :: problems get eliminated
           if(length>0)
           {
              codeFragments.push_back(srcCode.substr(pos,length));
-             cout<<"substr is  "<<srcCode.substr(pos,length).c_str()<<endl;
+            // cout<<"substr is  "<<srcCode.substr(pos,length).c_str()<<endl;
           }
        // codeFragments.push_back(srcCode.substr(pos,length));
        // codeFragments.push_back(srcCode.substr(delimiter,1));
@@ -86,7 +86,7 @@ int scannar::splitStr()
            {
                 codeFragments.push_back(srcCode.substr(delimiter,1));
 
-                 cout<<"substr +1 is "<<srcCode.substr(delimiter,1).c_str()<<endl;
+              //   cout<<"substr +1 is "<<srcCode.substr(delimiter,1).c_str()<<endl;
 
             }
            range=1;
@@ -94,11 +94,11 @@ int scannar::splitStr()
           else{
                bool comment=false;
                 found=false;
-                int tempDelim;
-                int count=0;
+             //   int tempDelim;
+               // int count=0;
                size_t findQuotes=0;
             //  cout<<"delimiter is quotes";
-              cout<<"quote in "<<endl;
+              //cout<<"quote in "<<endl;
               //if string
               if(srcCode.substr(delimiter,1).compare("\"")==0)
               {
@@ -135,7 +135,7 @@ int scannar::splitStr()
               }
               //if comment
               else if(srcCode.substr(delimiter,1).compare("/")==0){
-                  cout<<"in / else"<<endl;
+                //  cout<<"in / else"<<endl;
                   if(srcCode.substr(delimiter+1,1).compare("/")==0)
                   {
                       //test
@@ -145,7 +145,7 @@ int scannar::splitStr()
                          //cout<<"substr is  "<<srcCode.substr(pos,length).c_str()<<endl;
                       }
                     findQuotes= srcCode.find_first_of("\n",delimiter+2);
-                    cout<<"in if";
+                 //   cout<<"in if";
                     comment=true;
                   }
                  /* else{
@@ -161,7 +161,7 @@ int scannar::splitStr()
 
                if(findQuotes==string::npos&&comment==false)
                {
-                   cout<<"error cannot find closing \" "<<endl;
+                //   cout<<"error cannot find closing \" "<<endl;
                    range=delimiter;
                    return 6;
                }
@@ -172,7 +172,7 @@ int scannar::splitStr()
                   if(!comment)
                   {
                       codeFragments.push_back(srcCode.substr(delimiter,length+1));
-                       cout<<"substr is in quotes "<<srcCode.substr(delimiter,length+1).c_str()<<endl;
+                   //    cout<<"substr is in quotes "<<srcCode.substr(delimiter,length+1).c_str()<<endl;
                   }
                    else
                   {
@@ -184,7 +184,7 @@ int scannar::splitStr()
 
 
           }
-        cout<<delimiter<<endl;
+     //   cout<<delimiter<<endl;
         pos=delimiter+range;
         //used only for comments
         oldPos=delimiter;
@@ -192,16 +192,16 @@ int scannar::splitStr()
 
       }
     //  cout<<"count id "<<count<<endl;
-      cout<<"vector codeFragments size = "<<codeFragments.size()<<endl;
+     // cout<<"vector codeFragments size = "<<codeFragments.size()<<endl;
      // cout<<srcCode.c_str()<<endl;
-          int i=0;
+         /* int i=0;
           for(i=0;i<codeFragments.size();i++){
 
-                cout<<"push back for after splitting = "<<codeFragments.at(i)<<endl;
+            //    cout<<"push back for after splitting = "<<codeFragments.at(i)<<endl;
                 if(codeFragments.at(i).compare("\n")==0){
                     cout<<"hello"<<endl;
                 }
-            }
+            }*/
      int msg= appendToken();
 return msg;
 
@@ -216,25 +216,25 @@ int scannar::appendToken(){
     toks=new Tokenizer;
     lineNumber=1;
     //debugging only
-   for(int i=0;i<codeFragments.size();i++)
+  /* for(int i=0;i<codeFragments.size();i++)
     {
         cout<<"@@@@@in scannar: code fragments are "<<codeFragments.at(i)<<endl;
-    }
+    }*/
    unsigned int i=0;
    while( i<codeFragments.size()){
 
         data=codeFragments.at(i);
         //debugging only
-        if(data.compare("\t")==0)
+      /*  if(data.compare("\t")==0)
         {
             cout<<"----------- hi there i am a tab ------"<<endl;
-        }
+        }*/
         if(data.compare("\n")!=0&&data.compare("\t")!=0&&data.compare(" ")!=0)
         {
           tempStorage=data;
           transform(data.begin(), data.end(), data.begin(), ::tolower);
-          cout<<"through if not newline"<<" data is = "<<data<<endl;
-          cout<<data<<endl;
+         // cout<<"through if not newline"<<" data is = "<<data<<endl;
+          //cout<<data<<endl;
             switch (mapTokens[data]){
                 case IF:
                         numOfOp=0;
@@ -242,7 +242,7 @@ int scannar::appendToken(){
                         toks->variable="if";
                         toks->lineNum=lineNumber;
                         tokenize.push_back(*toks);
-                        cout<<"in if "<<lineNumber<<endl;
+                      //  cout<<"in if "<<lineNumber<<endl;
                         break;
 
                 case END_IF:
@@ -251,7 +251,7 @@ int scannar::appendToken(){
                         toks->variable="end_if";
                         toks->lineNum=lineNumber;
                         tokenize.push_back(*toks);
-                        cout<<"in end if "<<lineNumber<<endl;
+                      //  cout<<"in end if "<<lineNumber<<endl;
                         break;
 
                 case FOR:
@@ -260,7 +260,7 @@ int scannar::appendToken(){
                         toks->variable="for";
                         toks->lineNum=lineNumber;
                         tokenize.push_back(*toks);
-                        cout<<"in for "<<lineNumber<<endl;
+                       // cout<<"in for "<<lineNumber<<endl;
                         break;
 
                 case END_FOR:
@@ -269,7 +269,7 @@ int scannar::appendToken(){
                         toks->variable="end_for";
                         toks->lineNum=lineNumber;
                         tokenize.push_back(*toks);
-                        cout<<"in end for "<<lineNumber<<endl;
+                     //   cout<<"in end for "<<lineNumber<<endl;
                         break;
 
                 case WHILE:
@@ -278,7 +278,7 @@ int scannar::appendToken(){
                         toks->variable="while";
                         toks->lineNum=lineNumber;
                         tokenize.push_back(*toks);
-                        cout<<"in while "<<lineNumber<<endl;
+                      //  cout<<"in while "<<lineNumber<<endl;
                         break;
 
                 case END_WHILE:
@@ -287,7 +287,7 @@ int scannar::appendToken(){
                         toks->variable="end_while";
                         toks->lineNum=lineNumber;
                         tokenize.push_back(*toks);
-                        cout<<"in end while "<<lineNumber<<endl;
+                      //  cout<<"in end while "<<lineNumber<<endl;
                         break;
 
                 case BEGIN:
@@ -296,7 +296,7 @@ int scannar::appendToken(){
                         toks->variable="begin";
                         toks->lineNum=lineNumber;
                         tokenize.push_back(*toks);
-                        cout<<"in begin "<<lineNumber<<endl;
+                      //  cout<<"in begin "<<lineNumber<<endl;
                         break;
 
                 case END:
@@ -305,7 +305,7 @@ int scannar::appendToken(){
                         toks->variable="end";
                         toks->lineNum=lineNumber;
                         tokenize.push_back(*toks);
-                        cout<<"in end "<<lineNumber<<endl;
+                      //  cout<<"in end "<<lineNumber<<endl;
                         break;
 
                 case READ:
@@ -314,7 +314,7 @@ int scannar::appendToken(){
                         toks->variable="read";
                         toks->lineNum=lineNumber;
                         tokenize.push_back(*toks);
-                        cout<<"in read "<<lineNumber<<endl;
+                       // cout<<"in read "<<lineNumber<<endl;
                         break;
 
                 case PRINT:
@@ -323,7 +323,7 @@ int scannar::appendToken(){
                         toks->variable="print";
                         toks->lineNum=lineNumber;
                         tokenize.push_back(*toks);
-                        cout<<"in print "<<lineNumber<<endl;
+                      //  cout<<"in print "<<lineNumber<<endl;
                         break;
                 case T_LSB:
                         numOfOp=0;
@@ -331,7 +331,7 @@ int scannar::appendToken(){
                         toks->variable="[";
                         toks->lineNum=lineNumber;
                         tokenize.push_back(*toks);
-                        cout<<"in [ "<<lineNumber<<endl;
+                      //  cout<<"in [ "<<lineNumber<<endl;
                         break;
 
                 case T_RSB:
@@ -340,7 +340,7 @@ int scannar::appendToken(){
                         toks->variable="]";
                         toks->lineNum=lineNumber;
                         tokenize.push_back(*toks);
-                        cout<<"in ] "<<lineNumber<<endl;
+                     //   cout<<"in ] "<<lineNumber<<endl;
                         break;
 
                 case T_RCB:
@@ -349,7 +349,7 @@ int scannar::appendToken(){
                         toks->variable="}";
                         toks->lineNum=lineNumber;
                         tokenize.push_back(*toks);
-                        cout<<"in } "<<lineNumber<<endl;
+                    //    cout<<"in } "<<lineNumber<<endl;
                         break;
 
                 case T_LCB:
@@ -358,7 +358,7 @@ int scannar::appendToken(){
                         toks->variable="{";
                         toks->lineNum=lineNumber;
                         tokenize.push_back(*toks);
-                        cout<<"in  { "<<lineNumber<<endl;
+                      //  cout<<"in  { "<<lineNumber<<endl;
                         break;
 
                 case T_LBR:
@@ -367,7 +367,7 @@ int scannar::appendToken(){
                         toks->variable="(";
                         toks->lineNum=lineNumber;
                         tokenize.push_back(*toks);
-                        cout<<"in ( "<<lineNumber<<endl;
+                       // cout<<"in ( "<<lineNumber<<endl;
                         break;
 
                 case T_RBR:
@@ -376,7 +376,7 @@ int scannar::appendToken(){
                         toks->variable=")";
                         toks->lineNum=lineNumber;
                         tokenize.push_back(*toks);
-                        cout<<"in ) "<<lineNumber<<endl;
+                      //  cout<<"in ) "<<lineNumber<<endl;
                         break;
                 case ELSE:
                         numOfOp=0;
@@ -384,7 +384,7 @@ int scannar::appendToken(){
                         toks->variable="";
                         toks->lineNum=lineNumber;
                         tokenize.push_back(*toks);
-                        cout<<"in else "<<lineNumber<<endl;
+                      //  cout<<"in else "<<lineNumber<<endl;
                         break;
                 case EQUALS:
                         numOfOp=0;
@@ -392,7 +392,7 @@ int scannar::appendToken(){
                         toks->variable="=";
                         toks->lineNum=lineNumber;
                         tokenize.push_back(*toks);
-                        cout<<"in equals "<<lineNumber<<endl;
+                     //   cout<<"in equals "<<lineNumber<<endl;
                         break;
 
                 case SEMICOLON:
@@ -401,7 +401,7 @@ int scannar::appendToken(){
                         toks->variable="";
                         toks->lineNum=lineNumber;
                         tokenize.push_back(*toks);
-                        cout<<"in semicolon "<<lineNumber<<endl;
+                     //   cout<<"in semicolon "<<lineNumber<<endl;
                         break;
 
                 case T_DEC:
@@ -410,17 +410,17 @@ int scannar::appendToken(){
                         toks->variable="decimal";
                         toks->lineNum=lineNumber;
                         tokenize.push_back(*toks);
-                        cout<<"in decimal "<<lineNumber<<endl;
+                   //     cout<<"in decimal "<<lineNumber<<endl;
                         break;
 
                 case T_INT:
                         numOfOp=0;
-                        cout<<data.c_str()<<endl;
+                   //     cout<<data.c_str()<<endl;
                         toks->tokens=T_INT;
                         toks->variable="int";
                         toks->lineNum=lineNumber;
                         tokenize.push_back(*toks);
-                        cout<<"in int "<<lineNumber<<endl;
+                    //    cout<<"in int "<<lineNumber<<endl;
                         break;
 
 
@@ -430,7 +430,7 @@ int scannar::appendToken(){
                         toks->variable="char";
                         toks->lineNum=lineNumber;
                         tokenize.push_back(*toks);
-                        cout<<"in char "<<lineNumber<<endl;
+                    //    cout<<"in char "<<lineNumber<<endl;
                         break;
                 case T_STR:
                         numOfOp=0;
@@ -438,11 +438,11 @@ int scannar::appendToken(){
                         toks->variable="string";
                         toks->lineNum=lineNumber;
                         tokenize.push_back(*toks);
-                        cout<<"in str "<<lineNumber<<endl;
+                     //   cout<<"in str "<<lineNumber<<endl;
                         break;
                 case T_OP:
                         ++numOfOp;
-                        cout<<"in T_OP numOfOP= "<<numOfOp<<endl;
+                       // cout<<"in T_OP numOfOP= "<<numOfOp<<endl;
                         if(numOfOp>=3)
                         {
                             return 8;
@@ -480,14 +480,14 @@ int scannar::appendToken(){
                         }*/
                         else
                         {
-                            cout<<"in else"<<endl;
+                          //  cout<<"in else"<<endl;
                         toks->variable=data;
                         }
                         toks->tokens=T_OP;
 
                         toks->lineNum=lineNumber;
                         tokenize.push_back(*toks);
-                        cout<<"in operator "<<lineNumber<<endl;
+                    //    cout<<"in operator "<<lineNumber<<endl;
                         break;
                 case T_COP:
                         character=codeFragments.at(i+1);
@@ -503,7 +503,7 @@ int scannar::appendToken(){
                         }
                         toks->lineNum=lineNumber;
                         tokenize.push_back(*toks);
-                        cout<<"in operator "<<lineNumber<<endl;
+                       // cout<<"in operator "<<lineNumber<<endl;
                         break;
                 case T_FSLASH:
                          numOfOp=0;
@@ -516,7 +516,7 @@ int scannar::appendToken(){
                         if(character.compare("n")!=0&&character.compare("t")!=0
                                 &&character.compare("\"")!=0&&character.compare("'")!=0)
                         {
-                           cout<<"in character compare foward slash "<<character<<endl;
+                        //   cout<<"in character compare foward slash "<<character<<endl;
                             return 9;
                         }
 
@@ -524,14 +524,14 @@ int scannar::appendToken(){
                         toks->variable=data+codeFragments.at(i+1);
                         toks->lineNum=lineNumber;
                         tokenize.push_back(*toks);
-                        cout<<"in FSLASH \\"<<lineNumber<<endl;
+                      //  cout<<"in FSLASH \\"<<lineNumber<<endl;
                         ++i;
                         break;
                 case T_BSLASH:
                 //division
             {
                 ++numOfOp;
-                cout<<"in T_OP numOfOP= "<<numOfOp<<endl;
+              //  cout<<"in T_OP numOfOP= "<<numOfOp<<endl;
                 if(numOfOp>=3)
                 {
                     return 8;
@@ -556,14 +556,14 @@ int scannar::appendToken(){
                 }*/
                 else
                 {
-                    cout<<"in else"<<endl;
+                  //  cout<<"in else"<<endl;
                 toks->variable=data;
                 }
                 toks->tokens=T_OP;
 
                 toks->lineNum=lineNumber;
                 tokenize.push_back(*toks);
-                cout<<"in operator "<<lineNumber<<endl;
+               // cout<<"in operator "<<lineNumber<<endl;
                 break;
             }
                        //return 8;
@@ -581,7 +581,7 @@ int scannar::appendToken(){
                         toks->variable=data+character;
                         toks->lineNum=lineNumber;
                         tokenize.push_back(*toks);
-                        cout<<"in double operator "<<lineNumber<<endl;
+                      //  cout<<"in double operator "<<lineNumber<<endl;
                         ++i;
                         break;
 
@@ -594,8 +594,8 @@ int scannar::appendToken(){
                          toks->variable=tempStorage;
                          toks->lineNum=lineNumber;
                          tokenize.push_back(*toks);
-                         cout<<"tempStorage= "<<tempStorage<<endl;
-                         cout<<"in \" of default "<<lineNumber<<endl;
+                       //  cout<<"tempStorage= "<<tempStorage<<endl;
+                       //  cout<<"in \" of default "<<lineNumber<<endl;
 
                      }
                      else if(data.substr(0,1).compare("'")==0)
@@ -604,8 +604,8 @@ int scannar::appendToken(){
                          toks->variable=tempStorage;
                          toks->lineNum=lineNumber;
                          tokenize.push_back(*toks);
-                         cout<<"tempStorage= "<<tempStorage<<endl;
-                         cout<<"in CHARlIT "<<lineNumber<<endl;
+                    //     cout<<"tempStorage= "<<tempStorage<<endl;
+                    //     cout<<"in CHARlIT "<<lineNumber<<endl;
                         }
                      else if(isInt(data)==1)
                      {
@@ -613,7 +613,7 @@ int scannar::appendToken(){
                          toks->variable=data;
                          toks->lineNum=lineNumber;
                          tokenize.push_back(*toks);
-                         cout<<"in INTlIT "<<lineNumber<<endl;
+                     //    cout<<"in INTlIT "<<lineNumber<<endl;
                      }
 
                      else if(isDecimal(data)==1)
@@ -624,7 +624,7 @@ int scannar::appendToken(){
                          toks->variable=data;
                          toks->lineNum=lineNumber;
                          tokenize.push_back(*toks);
-                         cout<<"in DEClit "<<lineNumber<<endl;
+                   //      cout<<"in DEClit "<<lineNumber<<endl;
                      }
 
                      else if(data.substr(0,1).compare("_")==0||data.substr(start,1).compare("_")==0
@@ -638,13 +638,13 @@ int scannar::appendToken(){
                              data.compare("`")==0||data.compare(":")==0||data.compare(",")==0||
                              data.compare("?")==0){
                          //code for invalid character
-                         cout<<"invalid data is= "<<data<<endl;
+                   //      cout<<"invalid data is= "<<data<<endl;
                          return 8;
                      }
                      //identifiers
                      else
                      {
-                         cout<<"b4 checking type id "<<data <<endl;
+                     //    cout<<"b4 checking type id "<<data <<endl;
                          if(isTypeId(data)==1)
                          {
 
@@ -652,8 +652,8 @@ int scannar::appendToken(){
                          toks->variable=tempStorage;
                          toks->lineNum=lineNumber;
                          tokenize.push_back(*toks);
-                          cout<<"tempStorage= "<<tempStorage<<endl;
-                         cout<<"in else its an ID "<<lineNumber<<endl;
+                     //     cout<<"tempStorage= "<<tempStorage<<endl;
+                     //    cout<<"in else its an ID "<<lineNumber<<endl;
                          }
                          else
                          {
@@ -666,18 +666,20 @@ int scannar::appendToken(){
                      break;
             }//end switch
         }
-        else{
-            ++lineNumber;
-            cout<<"line number incremented to "<<lineNumber<<endl;
-            }
+        else
+        {
+             ++lineNumber;
+         //   cout<<"line number incremented to "<<lineNumber<<endl;
+        }
 
         ++i;
 
     }
-   print(tokenize);
+ //  print(tokenize);
    return 0;
 }
 
+//is a debugging and testing method
 void scannar::print(vector<Tokenizer> toPrint){
     cout<<"Tokenize---------------------------------\n\n"<<endl;
     for(unsigned int i=0;i<toPrint.size();i++){
@@ -769,7 +771,7 @@ string scannar::consoleMessage(int getMsg)
                // parse= new parser();
               // getMsg= parse->startParsing(tokenize);
                }
-                return "It works fine ftm...Built";
+                return "It works fin.\nBuilt";
                 break;
         case 1:
                 return (err->scannarError()+lineNo);
@@ -792,7 +794,7 @@ string scannar::consoleMessage(int getMsg)
            // return "5";
 
         case 6:
-        cout<<"lineNumber= "<<lineNo<<endl;
+       // cout<<"lineNumber= "<<lineNo<<endl;
                return (err->closeQuotesNotFound()+lineNo);
             //return "6";
         case 7:
@@ -982,20 +984,20 @@ int scannar::isDecimal(string data)
 
         size_t point=data.find_first_of(".");
         string regex="0123456789";
-        cout <<"scannar data is "<<data;
+       // cout <<"scannar data is "<<data;
         //check for decimal
         if(point!=string::npos)
         {
-            cout<<"scannar point!npos isdec"<<endl;
+           // cout<<"scannar point!npos isdec"<<endl;
             size_t numerator = data.substr(0,point).find_first_not_of(regex);
             size_t denominator= data.substr(point+1).find_first_not_of(regex);
 
-            cout<<"numerator= "<<numerator<<endl;
-            cout<<"denom= "<<denominator<<endl;
+          //  cout<<"numerator= "<<numerator<<endl;
+          //  cout<<"denom= "<<denominator<<endl;
 
            if(numerator!=string::npos||denominator!=string::npos)
            {
-               cout<<"not npos isDec"<<endl;
+             //  cout<<"not npos isDec"<<endl;
                return 2;
            }
 
@@ -1019,7 +1021,7 @@ int scannar::isInt(string data)
 
     string regex="0123456789";
     size_t number=data.find_first_not_of(regex);
-    cout<<"number is "<<number<<endl;
+   // cout<<"number is "<<number<<endl;
     if(number!=string::npos)
     {
         return 2;
@@ -1031,7 +1033,7 @@ int scannar::isInt(string data)
 
 int scannar::isTypeId(string data)
 {
-    cout<<"isType id data is "<<data.c_str()<<"walooop"<<endl;
+  //  cout<<"isType id data is "<<data.c_str()<<"walooop"<<endl;
     string regex ="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_";
     size_t number= data.find_first_not_of(regex);
     if(number!=string::npos)

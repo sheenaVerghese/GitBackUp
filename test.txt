@@ -2413,6 +2413,7 @@ printToScreen(i+" is greater than 2 of else");
 end_if
 else
 printToScreen("j value b4 while is "+j);
+printToScreen ("z before while is "+z);
 while(z>5)
 z=z+1;
 printToScreen("z values are "+z);
