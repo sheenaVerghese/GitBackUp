@@ -40,7 +40,7 @@ public:
     bool lookUpVars(int, int key);
     int computeValues(int);
     int computeLoop(int);
-
+    string checkNegation(int);
     void updateEnvTable(int);
     //ints
     string divInt(string,string);

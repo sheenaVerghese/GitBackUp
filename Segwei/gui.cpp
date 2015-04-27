@@ -297,11 +297,10 @@ void GUI::open()
 
 void GUI::about()
 {
-    QMessageBox::about(this,"Help","Run kasldklkmlml"
-
-
-
-                       );
+    QMessageBox::about(this,"Help","Enter the code into the editor.\n"
+                       +"Use the loop templates at the right to start of."
+                       +"\nPress the green arrow button to run."
+                      );
 
 }
 
@@ -382,9 +381,9 @@ void GUI::run()
      console->setPlainText("running..");
 	 QString constStr = codeEditor->toPlainText();
 
-	 console->setPlainText("running after conversion");
+     //console->setPlainText("running after conversion");
 	string scan = constStr.toStdString();
-	console->setPlainText("running after conversion 2");
+    console->setPlainText("Running.. ");
 	scanFile = new scannar(scan);
     //string test =scanFile->getReturn();
     string getMsg=scanFile->returnToGUI();

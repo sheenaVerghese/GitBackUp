@@ -1,7 +1,17 @@
-//allows variable hiding
-//doesn't allow redeclaration/reinit in the same scope or block using the same name
-//doesn't allow declaration of another type with the same variable name
-//need to check if variable has been declared and init b4 use
+/************************************************
+ * Author: Sheena V
+ * Date: 10/02/2015
+ * Description : Parser Class for the Language
+ * Module: Parser.cpp
+ * Functionalities:
+ * 1)Takes in the tokenized code
+ * 2)Checks the grammar rules
+ * 3)Allows variable hiding
+ * 4)Doesn't allow redeclaration in the same scope or block using the same name
+ * 5)Checks if variable has been declared and initialized before use
+ *
+ * **********************************************/
+
 
 #include "parser.h"
 #include "codegenerator.h"
@@ -31,6 +41,7 @@ parser::parser():
 {
 
 }
+//default constructor.
 parser::~parser()
 {
 
@@ -61,7 +72,7 @@ int parser::startParsing(vector<scannar::Tokenizer> token)
     }
     return getMsg;
 }
-
+//checks if the structure of the program follows grammar rules.
 int parser::checkStructure()
 {
 
@@ -105,7 +116,7 @@ int parser::checkStructure()
              case scannar::END_IF:
            // cout<<"in END_IF"<<endl;
                 {
-            string statement;
+                    string statement;
                     if(prevStatement.size()>0)
                     {
                          if(prevStatement.at(prevStatement.size()-1).compare("if")==0||
@@ -144,6 +155,7 @@ int parser::checkStructure()
              case scannar::FOR:
                     if(checkOpenBracket(i,1)==21)
                     {
+                        errorLine=parseTokenizer.at(i).lineNum;
                         return 21;
                     }
                     ++countFor;
@@ -160,6 +172,7 @@ int parser::checkStructure()
                     {
                        // errorLine=parseTokenizer.at(temp).lineNum;
                      //   cout<<"error is"<<error<<endl;
+                        errorLine=parseTokenizer.at(i).lineNum;
                         return error;
                     }
                     //--testing only
@@ -196,6 +209,7 @@ int parser::checkStructure()
             }
             else
             {
+                errorLine=parseTokenizer.at(i).lineNum;
                 return 15;
             }
                     break;
@@ -255,6 +269,7 @@ int parser::checkStructure()
             }
             else
             {
+                errorLine=parseTokenizer.at(i).lineNum;
                 return 16;
             }
                     break;
@@ -333,10 +348,11 @@ int parser::checkStructure()
                         return 21;
                     }
                   //  cout<<"in print"<<endl;
+                    temp=i;
                     i=findSemiColon(i);
                     if(error!=0)
                     {
-                        errorLine=parseTokenizer.at(i).lineNum;
+                        errorLine=parseTokenizer.at(temp).lineNum;
                         return error;
                     }
 
@@ -832,7 +848,7 @@ int parser::checkOpenBracket(int i,int key)
     //is okay a.k.a it works fine
     return 0;
 }
-//need to make it to a semicolon thing
+//does static type checking here. Checks if the assigned types are compatible
 bool parser::checkType(scannar::token value,scannar::token type)
 {
     if(!loop)
@@ -907,6 +923,11 @@ bool parser::checkType(scannar::token value,scannar::token type)
            return true;
        }
        else if(type==scannar::T_INT&&(value==scannar::T_RBR||value==scannar::T_LBR))
+       {
+           return true;
+       }
+       //returns true for all cos print converts all types to type sentence
+       else if(trackSemiColon.at(0).tokens==scannar::PRINT)
        {
            return true;
        }
@@ -989,6 +1010,8 @@ bool parser::checkType(scannar::token value,scannar::token type)
     }
 
 }
+//changes the position value of the environment pointer
+//rehashing the values
 void parser::modifyDqPositions(int insertPos)
 {
     for(unsigned int i=insertPos;i<dequePtr.size();i++)
@@ -1145,6 +1168,7 @@ int parser::findSemiColon(int i)
         trackSemiColon.push_back(parseTokenizer.at(i));
         ++i;
     }
+  //  cout<<"i is "<<i<<" parse size is "<<parseTokenizer.size()<<endl;
     //cout<<i<<endl;
     if(i>=parseTokenizer.size()-1)
     {
@@ -1200,7 +1224,7 @@ bool parser::isLoop(int pos)
     }
     return false;
 }
-//this class checks the statement
+//this function checks the statements
 int parser::parseStatement()
 {
     bool assignRead =false;
@@ -1222,25 +1246,25 @@ int parser::parseStatement()
                // break;
          }
 
-         case scannar::END_IF:
+        /* case scannar::END_IF:
                //error
-                break;
+                break;*/
          case scannar::FOR:
             {
                //  cout<<"in FOR of parseStatement"<<endl;
                  int check=forLoop(0);
                  if(check!=1)
                  {
-                    // errorLine=trackSemiColon.at(i).lineNum;
+                     errorLine=trackSemiColon.at(i).lineNum;
                      error=check;
                  }
                  return check;
                   //  break;
          }
 
-         case scannar::END_FOR:
+         /*case scannar::END_FOR:
                 //error
-                break;
+                break;*/
 
          case scannar::WHILE:
          {
@@ -1678,6 +1702,8 @@ bool parser::checkCloseBrackets(int i, int key)
 }
 
 //int i// i stands for T_ID position
+//checks if the variables are being redeclared in the same block
+//if not being redeclared then insert it to the environment table
 int parser::checkVariables(int i)
 {
     int sizeDq=dequePtr.size();
@@ -1752,7 +1778,7 @@ int parser::checkVariables(int i)
                 }
                 ++j;
             }
-            //name doesn't exist
+            //name doesn't exist BUT block has been initialized before
             if(!variableExists){
                 int errorState=addToEnvironmentTable(i);
                 if(errorState==0)
@@ -1834,9 +1860,7 @@ bool parser::isInit(int i)
     {
       //  cout<<"in else"<<endl;
         //some variables in that block has been declared
-        //so need to check those
-        //doesn't allow duplicate varible names in the
-        //same block level
+
         if(dequePtr.at(sizeDq-k).block==blockData)
         {
           //  cout<<"in same block else if k= "<<k<<endl;
@@ -1849,8 +1873,8 @@ bool parser::isInit(int i)
             while(getPosition+j<tableSize&&
                   blockData==environmentTable.at(getPosition+j).block)
             {
-                //checking if variable name already exists
-                //checking if its being redeclared
+                //checking if variable name exists
+
                 if(environmentTable.at(getPosition+j).variable.compare(
                    trackSemiColon.at(i).variable)==0)
 
@@ -2000,12 +2024,13 @@ int parser::checkAssignment(int pos)
 
                 if(trackSemiColon.at(0).tokens==scannar::T_ID)
                 {
-
+                       //variable not found
                         if(!lookUp(0))
                         {
                                 return 31;
                         }
                 }
+                //if the item before the semicolon is an equals return error
                 if(trackSemiColon.at(vectorSize-1).tokens==scannar::EQUALS)
                 {
                     return 27;
@@ -2044,6 +2069,7 @@ int parser::checkAssignment(int pos)
                     {
                         return 37;
                     }
+                    //if it is a loop code
                     if(loop)
                     {
                        // cout<<"in loop parser"<<endl;
@@ -2236,6 +2262,7 @@ int parser::checkAssignment(int pos)
                 {
 
                    // cout<<"in print check ass false outside"<<endl;
+                    //error if print is used after = sign
                     if(trackSemiColon.at(vectorSize-1).tokens==scannar::PRINT)
                     {
                        // cout<<"in print check ass false"<<endl;
@@ -2853,8 +2880,8 @@ int parser::checkLoop(int i)
                         negNum=1;
                         //after a negation it must be a decimal, int or an id type
                         if( trackSemiColon.at(pos+1).tokens!=scannar::T_DECLit
-                                ||trackSemiColon.at(pos+1).tokens!=scannar::T_INTLit
-                                ||trackSemiColon.at(pos+1).tokens!=scannar::T_ID)
+                                &&trackSemiColon.at(pos+1).tokens!=scannar::T_INTLit
+                                &&trackSemiColon.at(pos+1).tokens!=scannar::T_ID)
                         {
                             //returns expected variable and actual type differs
                             return 25;
@@ -3060,7 +3087,7 @@ int parser::forLoop(int i)
             if(i>=tempVector.size())
             {
                 errorLine=tempVector.at(0).lineNum;
-               // cout<<"line 2771"<<endl;
+                //cout<<"line 2771"<<endl;
                 //missing semicolon
                 error= 29;
                 return error;

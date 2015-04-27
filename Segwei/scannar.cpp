@@ -73,7 +73,8 @@ int scannar::splitStr()
           {
         //  cout<<"length is "<<length<<endl;
 
-         //length>0 because when then :: problems get eliminated
+         //length>0 because when then :: problems get eliminated ie
+        //problems related to continues delimiters.
           if(length>0)
           {
              codeFragments.push_back(srcCode.substr(pos,length));
@@ -467,6 +468,12 @@ int scannar::appendToken(){
                             toks->variable="-";
                             ++i;
                         }
+                        //for multiplying with negative numbers
+                        else if(character.compare("-")==0&&codeFragments.at(i).compare("*")==0)
+                        {
+                            toks->variable="*-";
+                            ++i;
+                        }
                         //anything other than a negation after another operator is a false
                         else if(tokenize.at(tokenize.size()-1).tokens==T_OP&&codeFragments.at(i).compare("-")!=0)
                         {
@@ -771,7 +778,7 @@ string scannar::consoleMessage(int getMsg)
                // parse= new parser();
               // getMsg= parse->startParsing(tokenize);
                }
-                return "It works fin.\nBuilt";
+                return "It works fine.\nBuilt";
                 break;
         case 1:
                 return (err->scannarError()+lineNo);

@@ -158,7 +158,7 @@ string error::multipleEnd()
 
 string error::missingEquals()
 {
-    return "Syntax Error:Equals operator expected but not found type:Line ";
+    return "Syntax Error:Equals operator expected but not found (invalid command found):Line ";
 }
 
 string error::uninitAndUndeclaredVars()

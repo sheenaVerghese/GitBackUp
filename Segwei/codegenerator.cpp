@@ -60,6 +60,7 @@ void codegenerator::startCodeGen(vector<scannar::Tokenizer> tok,
     }
   //  cout<<"---------------------all done codegen----------------------------\n"<<endl;
     startCode();
+    endCodeGen();
 
 }
 void codegenerator::blockInitialisation()
@@ -80,6 +81,7 @@ void codegenerator::exitBlock()
     blockData=parent.at(parent.size()-1);
 }
 //used for while loops and for loops
+//rolls the block value to the previous block.
 void codegenerator::blockRollBack()
 {
    // cout<<"in blockRollBack size b4 pop"<<parent.size()<<endl;
@@ -89,7 +91,7 @@ void codegenerator::blockRollBack()
   //  cout<<"in blockRollBack"<<parent.size()<<endl;
 
 }
-
+//reenter new block
 void codegenerator::blockRollFoward()
 {
     blockData=blockData+1;
@@ -1620,10 +1622,10 @@ int codegenerator::getLoopVars(int i)
     loopVars.clear();
     mulDiv=false;
     addMinus=false;
-    bool checked=false;
+   // bool checked=false;
     int temp=i;
     int openBracket=0;
-    //get upto but not including the ';'
+    //get upto but not including the ')'
    // cout<<"in getLoop vars block is "<<blockData<<endl;
     while(i<code.size()&&code.at(i).tokens!=scannar::T_RBR)
     {
@@ -1790,7 +1792,62 @@ int codegenerator::computeValues(int i=0)
                 }
 
             }
+            if(trackSemiColon.at(2).variable.compare("-")==0)
+            {
+                string concat=checkNegation(2);
+                //string concat =trackSemiColon.at(2).variable + trackSemiColon.at(3).variable;
+                //cout<<"concated value in compute if "<<concat<<endl;
+                trackSemiColon.at(2).variable=concat;
+                trackSemiColon.at(2).tokens=scannar::T_INT;
+                //just ftm
+               // trackSemiColon.pop_back();
+                //this gets rid of the 4th element if counting from base 1 ie 1,2...
+                trackSemiColon.erase(trackSemiColon.begin()+3);
+               /* for(int j=0; j<trackSemiColon.size();j++)
+                {
+                    cout<<"token is first 1800 "<<trackSemiColon.at(j).tokens<<"variable is "<<trackSemiColon.at(i).variable<<endl;
 
+
+                }*/
+            }
+            for(int i=2;i<trackSemiColon.size();i++)
+            {
+                if(trackSemiColon.at(i).tokens==scannar::EQUALS
+                        &&trackSemiColon.at(i+1).tokens==scannar::EQUALS)
+                {
+
+                    ++i;
+                    //cout<<"hoooooooppppppppp"<<trackSemiColon.at(i).tokens<<endl;
+                }
+                if(trackSemiColon.at(i).tokens==scannar::T_COP
+                        ||trackSemiColon.at(i).variable.compare("!=")==0
+                        ||trackSemiColon.at(i).tokens==scannar::EQUALS)
+                {
+                    //cout<<"next value is a negation "<<trackSemiColon.at(i+1).tokens<<trackSemiColon.at(i+1).variable<<endl;
+                   if(trackSemiColon.at(i+1).variable.compare("-")==0)
+                   {
+                      // cout<<"fine"<<endl;
+                       string concat=checkNegation(i+1);
+                       //string concat =trackSemiColon.at(i+1).variable+trackSemiColon.at(i+2).variable;
+                       trackSemiColon.at(i+1).variable=concat;
+                       trackSemiColon.at(i+1).tokens=trackSemiColon.at(i+2).tokens;
+                     //  cout<<"wooop"<<endl;
+                       //just ftm
+                      // trackSemiColon.pop_back();
+                       //this gets rid of the 4th element if counting from base 1 ie 1,2...
+                       trackSemiColon.erase(trackSemiColon.begin()+(i+2));
+                      /* for(int j=0; j<trackSemiColon.size();j++)
+                       {
+                           cout<<"token is "<<trackSemiColon.at(j).tokens<<"variable is "<<trackSemiColon.at(i).variable<<endl;
+
+
+                       }*/
+                       --i;
+                   }
+
+                }
+
+            }
 
                 tokenType=trackSemiColon.at(2).tokens;
 
@@ -1861,7 +1918,14 @@ int codegenerator::computeValues(int i=0)
                 //negative values to concat the negative and the values
                 if(trackSemiColon.at(2).tokens==scannar::T_OP)
                 {
-                    string concat =trackSemiColon.at(2).variable + trackSemiColon.at(3).variable;
+                    if(trackSemiColon.at(3).tokens==scannar::T_ID)
+                    {
+                        lookUpVars(3);
+                        trackSemiColon.at(3).variable=environment.at(idPos).value;
+                        trackSemiColon.at(3).tokens=environment.at(idPos).tokens;
+                    }
+                    string concat=checkNegation(2);
+                    //string concat =trackSemiColon.at(2).variable + trackSemiColon.at(3).variable;
                    // cout<<"concated value in compute Int is "<<concat<<endl;
                     trackSemiColon.at(2).variable=concat;
                     trackSemiColon.at(2).tokens=scannar::T_INT;
@@ -2942,6 +3006,18 @@ bool codegenerator::andOperator(int value1, int value2)
         return false;
     }
     return true;
+}
+
+string codegenerator::checkNegation(int pos)
+{
+    int number1;
+    istringstream ( trackSemiColon.at(pos+1).variable ) >> number1;
+    int value=-number1;
+    stringstream convert;
+    string result;
+    convert<<value;
+    result=convert.str();
+    return result;
 }
 
 codegenerator::~codegenerator()
