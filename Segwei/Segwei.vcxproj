@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{1D188059-FCAD-3032-8F5E-86CF18FDF55E}</ProjectGuid>
+    <ProjectGuid>{912C72F8-60E1-3076-9BDA-B05AF6A216E0}</ProjectGuid>
     <RootNamespace>Segwei</RootNamespace>
     <Keyword>Qt4VSv1.0</Keyword>
   </PropertyGroup>
