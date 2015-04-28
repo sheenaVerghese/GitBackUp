@@ -24,7 +24,7 @@ string error::scannarError(){
 }
 
 string error::unknownType(){
-    return "An unknown type has been used at line...";
+    return "An unknown type has been used:Line ";
 }
 
 //after initialisation, the use of the variable is wrong
