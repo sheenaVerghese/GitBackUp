@@ -44,11 +44,7 @@ GUI::GUI(QWidget *parent) :
     int height = rec.height();
     int width = rec.width();
     codeEditor=new LineNumber();
-   // QPushButton *button1 = new QPushButton("button1");
-   // QPushButton *button2 = new QPushButton("button2");
 
-
-   // button2->setMaximumHeight(height);
    QLabel *consoleLable=new QLabel;
    consoleLable->setText("Console");
    QLabel *editorLable=new QLabel;
@@ -115,9 +111,9 @@ GUI::GUI(QWidget *parent) :
     //setting items to the toolbox
     toolBox->addItem(vGroupBox,"Loops");
     toolBox->addItem(vGroupBox2,"Variable Types");
-     toolBox->addItem(vGroupBox3,"Miscellaneous");
+     toolBox->addItem(vGroupBox3,"Console I/O");
     toolBox->setMaximumWidth(quarterWidth/2);
-    //toolBox->addItem(elseButton,"Loop");
+
 
    //setting icon to toolButtons
     copyButton->setIcon(QIcon((":/Images/Icons/Icons/Copy.png")));
@@ -126,8 +122,7 @@ GUI::GUI(QWidget *parent) :
     openButton->setIcon(QIcon((":/Images/Icons/Icons/Open.png")));
     pasteButton->setIcon(QIcon((":/Images/Icons/Icons/Paste.png")));
     saveButton->setIcon(QIcon((":/Images/Icons/Icons/Save.png")));
-   // QToolButton *testButton=new QToolButton;
-    //testButton->setIcon(QIcon((":/Images/Icons/Icons/Stop3.png")));
+
     //setting tooltip
     copyButton->setToolTip("Copy");
     cutButton->setToolTip("Cut");
@@ -148,7 +143,7 @@ GUI::GUI(QWidget *parent) :
     toolBar->addWidget(pasteButton);
     toolBar->addSeparator();
     toolBar->addWidget(runButton);
-    //toolBar->addWidget(testButton);
+
 
 
    verticalBox->setMaximumWidth(quarterWidth*3);
@@ -297,18 +292,13 @@ void GUI::open()
 
 void GUI::about()
 {
-    QMessageBox::about(this,"Help","Enter the code into the editor.\n"
-                       +"Use the loop templates at the right to start of."
-                       +"\nPress the green arrow button to run."
+    QMessageBox::about(this,"Help","Enter the code into the editor.\nUse the loop templates at the right to start off.\nPress the green arrow button to run."
                       );
 
 }
 
 void GUI::newFile()
 {
-  /* QString test= ui->editor->toPlainText();
-   ui->consoleText->setPlainText(test);
-   cout<< test.toStdString();*/
    codeEditor->setPlainText("begin\n\nend");
    console->setPlainText("");
 
@@ -371,8 +361,6 @@ void GUI::copy()
 void GUI::paste()
 {
     codeEditor->paste();
-  // const QString a ="apple";
-    //codeEditor->setPlainText(a);
 }
 
 //run should send the whole string to the scannar or lexer class
@@ -380,22 +368,12 @@ void GUI::run()
 {
      console->setPlainText("running..");
 	 QString constStr = codeEditor->toPlainText();
+     string scan = constStr.toStdString();
+     console->setPlainText("Running.. ");
+     scanFile = new scannar(scan);
+     string getMsg=scanFile->returnToGUI();
+     console->setPlainText(QString::fromStdString(getMsg));
 
-     //console->setPlainText("running after conversion");
-	string scan = constStr.toStdString();
-    console->setPlainText("Running.. ");
-	scanFile = new scannar(scan);
-    //string test =scanFile->getReturn();
-    string getMsg=scanFile->returnToGUI();
-    //QString::fromStdString(getMsg)
-    console->setPlainText(QString::fromStdString(getMsg));
-    //cout << test.c_str() << " whoop " << endl;;
-	//scanFile = new scannar(scan);
- 
-	//need the one below when we convert from c++str to qstr
-	//QString::fromStdString();
-	
-	
 }
 
 //creates the actions for the toolbuttons
