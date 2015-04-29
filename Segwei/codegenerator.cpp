@@ -509,7 +509,7 @@ int codegenerator::startCode()
 
                     int countEnd=1;
 
-                    //revert till you find while and then go one step backwards.
+                    //revert till you find for and then go one step backwards.
                     while(code.at(i-1).tokens!=scannar::FOR
                           ||countEnd>1)
                     {
