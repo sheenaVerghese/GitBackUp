@@ -137,6 +137,7 @@ private slots:
 
 protected :
 	scannar *scanFile;
+    void closeEvent(QCloseEvent *event);
 
 };
 

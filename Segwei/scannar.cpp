@@ -566,7 +566,12 @@ int scannar::appendToken(){
         }
         else
         {
+            //only increase line number of it is a newline.
+            //Ignore for space and tab.
+            if(data.compare("\n")==0)
+            {
              ++lineNumber;
+            }
         }
 
         ++i;
@@ -604,7 +609,7 @@ void scannar::print(vector<Tokenizer> toPrint){
 
       }
 }
-
+//uses this map to map and match the tokens
 void scannar::initialiseMap(){
     mapTokens["if"]=IF;
     mapTokens["while"]=WHILE;

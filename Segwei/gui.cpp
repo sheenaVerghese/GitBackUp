@@ -91,28 +91,46 @@ GUI::GUI(QWidget *parent) :
    stringButton= new QPushButton("SENTENCE");
    intButton= new QPushButton("INT");
    decButton= new QPushButton("DECIMAL");
+   //setting tooltip
+   ifButton->setToolTip("If()\n//do something\n End_If");
+   elseButton->setToolTip("If()\n//do something\n Else\n //do something\n End_If");
+   forButton->setToolTip("For(;;)\n//do something\n End_For");
+   whileButton->setToolTip("While()\n//do something\nEnd_While");
+   printButton->setToolTip("PrintToScreen(//add sentence here);");
+   beginButton2->setToolTip("Begin \n//do something\nEnd");
+   readButton->setToolTip("Variable = ReadFromScreen();");
+   charButton->setToolTip("Character type variable");
+   stringButton->setToolTip("Sentence Type Variable");
+   intButton->setToolTip("Integer type variable");
+   decButton->setToolTip("Decimal Type Variable");
+
+
     //adding items to toolbox
     vToolBox->addWidget(ifButton);
     vToolBox->addWidget(elseButton);
     vToolBox->addWidget(forButton);
     vToolBox->addWidget(whileButton);
     vGroupBox->setLayout(vToolBox);
+    vGroupBox->setToolTip("Click on the Loops below to appear in the Editor");
   //second group
     vToolBox2->addWidget(charButton);
     vToolBox2->addWidget(stringButton);
     vToolBox2->addWidget(intButton);
     vToolBox2->addWidget(decButton);
     vGroupBox2->setLayout(vToolBox2);
+    vGroupBox2->setToolTip("Click on the Variable Types below to appear in the Editor");
 //third group
     vToolBox3->addWidget(beginButton2);
     vToolBox3->addWidget(readButton);
     vToolBox3->addWidget(printButton);
     vGroupBox3->setLayout(vToolBox3);
+    vGroupBox3->setToolTip("Click on the Input-Output operation for it to appear in the Editor");
     //setting items to the toolbox
     toolBox->addItem(vGroupBox,"Loops");
     toolBox->addItem(vGroupBox2,"Variable Types");
-     toolBox->addItem(vGroupBox3,"Console I/O");
+    toolBox->addItem(vGroupBox3,"Console I/O");
     toolBox->setMaximumWidth(quarterWidth/2);
+
 
 
    //setting icon to toolButtons
@@ -448,7 +466,23 @@ void GUI::beginCode()
     codeEditor->insertPlainText("\nbegin\nend\n");
 
 }
+void GUI::closeEvent(QCloseEvent *event)
+{
+    int result = QMessageBox::warning(this, tr("Quit"),
+                                      tr("Are you sure you want to quit?\n"
+                                         "Any unsaved changes will be lost!"),
+                                      QMessageBox::Cancel | QMessageBox::Ok,
+                                      QMessageBox::Cancel);
 
+      if(result==QMessageBox::Cancel)
+      {
+          event->ignore();
+      }
+      else
+      {
+          event->accept();
+      }
+}
 
 GUI::~GUI()
 {

@@ -1964,7 +1964,7 @@ void codegenerator::updateEnvTable(int i)
 
 void codegenerator::endCodeGen()
 {
-    displayResult->insertPlainText("> Done.");
+    displayResult->insertPlainText("\n> Done.");
 }
 
 string codegenerator::divInt(string numerator, string denominator)
