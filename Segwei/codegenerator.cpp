@@ -2310,8 +2310,6 @@ int codegenerator::computeLoop(int k)
 
         ++pos;
 
-
-
         computeValues(0);
 
         //3 cos if it is if(a>3 then size is 5 but if it is if(a==3 then size is 6
