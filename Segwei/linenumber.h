@@ -43,16 +43,16 @@
 #include <QMainWindow>
 #include <QPlainTextEdit>
 #include <QObject>
-//#include "editor.h"
 class QPaintEvent;
 class QResizeEvent;
 class QSize;
 class QWidget;
 class LineNumberArea;
 class MainWindow;
-//class editor;
 
-namespace Ui {
+
+namespace Ui
+{
 class LineNumberArea;
 }
 

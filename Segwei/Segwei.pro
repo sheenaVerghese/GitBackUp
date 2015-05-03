@@ -14,7 +14,6 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         gui.cpp \
-    codeeditor.cpp \
     linenumber.cpp \
     scannar.cpp \
     error.cpp \
@@ -22,7 +21,6 @@ SOURCES += main.cpp\
     codegenerator.cpp
 
 HEADERS  += gui.h \
-    codeeditor.h \
     linenumber.h \
     scannar.h \
     error.h \

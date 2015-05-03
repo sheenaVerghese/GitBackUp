@@ -13,11 +13,8 @@
 #include <deque>
 #include <sstream>
 #include <QInputDialog>
-//#include "scannar.h"
 #include "parser.h"
 using namespace std;
-//class scannar;
-//class parser;
 namespace Ui {
 class codegenerator;
 }
@@ -76,7 +73,6 @@ private:
     Ui::codegenerator *ui;
     QVBoxLayout *vLayout;
     QGroupBox *verticalBox;
-   // QGroupBox *horizontalBox;
     QWidget *widget;//parent widget
     QPlainTextEdit *displayResult;
 //variables
