@@ -22,7 +22,7 @@ codegenerator::codegenerator(QWidget *parent) :
     loop(0),
     trueFalse(false),
     loopChecker(0),
-    loopCounter(20)
+    loopCounter(551)
 {
     QVBoxLayout *mainLayout =new QVBoxLayout;
     vLayout = new QVBoxLayout;
@@ -416,7 +416,7 @@ int codegenerator::startCode()
                                 ++i;
                             }
                             ++loopChecker;
-                            loopCounter=19;
+                            loopCounter=550;
                             infiniteLoop.push_back(loopCounter);
                         }
 
@@ -637,7 +637,7 @@ int codegenerator::startCode()
                          {
 
                              ++loopChecker;
-                             loopCounter=19;
+                             loopCounter=550;
                              infiniteLoop.push_back(loopCounter);
                          }
 
